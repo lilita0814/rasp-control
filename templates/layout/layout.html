@@ -3,11 +3,8 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<style>
-    body {
-    font-family: 'cursive', sans-serif;
-}
-</style>
+<link rel="stylesheet" href="/static/css/layout.css">
+
 <link rel="icon" href="/static/img/web_icon.png" type="image/png">
 <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.rtl.css">
@@ -18,11 +15,26 @@
 <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap-utilities.css">
 <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap-utilities.rtl.css">
 <link rel="stylesheet" href="/static/lib/font_awesome.css">
-<body style="margin: 0">
-    <script src="/static/lib/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="/static/lib/bootstrap/js/bootstrap.esm.js"></script>
-    <script src="/static/lib/bootstrap/js/bootstrap.js"></script>
-    <script src="/static/lib/jquery.js"></script>
-    <div>{% block content %}{% endblock %}</div>
+
+<body>
+<script src="/static/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.esm.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/static/lib/jquery.js"></script>
+
+<div class="background"></div>
+
+<div class="col-12 justify-content-center d-flex">
+    <img id="logo" src="/static/img/logo.png" alt="logo.jpg">
+</div>
+
+<div class="container mt-0 mb-xxl-5">
+    <!-- menu bar -->
+    {% include '/layout/menu.html' %}
+    <!-- content -->
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</div>
 </body>
 </html>

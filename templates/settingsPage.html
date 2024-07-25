@@ -1,0 +1,16 @@
+{% extends 'layout/layout.html' %}
+{% block title %}settings{% endblock %}
+{% block content %}
+
+    <div>
+        <div class="input-group mb-3 col-2">
+            <span class="input-group-text">Fan pin</span>
+            {% include 'layout/rasp-pin-select.html' %}{% with select = config.fan_pin %}{% endwith %}
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

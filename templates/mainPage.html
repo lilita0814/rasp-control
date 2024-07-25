@@ -1,18 +1,8 @@
-{% extends 'layout.html' %}
+{% extends 'layout/layout.html' %}
 {% block title %}Rasp Control{% endblock %}
 {% block content %}
+    <link rel="stylesheet" href="/static/css/mainPage.css">
 
-<link rel="stylesheet" href="/static/css/mainPage.css">
-
-<div class="background"></div>
-
-<div class="col-12 justify-content-center d-flex">
-    <img id="logo" height="200px" src="/static/img/logo.png" alt="logo.jpg">
-</div>
-
-<div class="container mt-0 mb-xxl-5">
-    <!-- menu bar -->
-    {% include 'menu.html' %}
     <div class="col-12 d-flex">
         <!-- Left information -->
         <div class="col-sm-6 pe-2">
@@ -111,7 +101,6 @@
         </div>
         <textarea class="form-control log-textarea col-sm-12" readonly></textarea>
     </div>
-</div>
 
-<script src="/static/js/mainPage.js"></script>
+    <script src="/static/js/mainPage.js"></script>
 {% endblock %}

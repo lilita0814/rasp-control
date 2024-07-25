@@ -1,0 +1,10 @@
+
+<select class="form-select">
+    {% for i in range(40) %}
+        <option value="{{ i + 1 }} {% if i + 1 == select %}selected{% endif %}">
+            {{ i + 1 }}</option>
+    {% endfor %}
+</select>
+
+
+s

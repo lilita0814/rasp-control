@@ -1,9 +1,8 @@
 import socket
 import webbrowser
 from threading import Timer
-
 from flask import Flask
-from controller.mainPage import app as main_page
+from controller.MainPageController import app as main_page
 
 
 def open_browser():
