@@ -3,6 +3,7 @@ import webbrowser
 from threading import Timer
 from flask import Flask
 from controller.MainPageController import app as main_page
+from module.ConfigManager import ConfigManager
 
 
 def open_browser():
@@ -10,6 +11,7 @@ def open_browser():
 
 
 if __name__ == '__main__':
+    ConfigManager.get_config()
     app = Flask(__name__,
                 template_folder='templates',
                 static_folder='static')

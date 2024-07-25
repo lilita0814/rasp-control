@@ -1,7 +1,5 @@
 import os
-
 import yaml
-
 from model.Config import Config
 
 
@@ -30,8 +28,8 @@ class ConfigManager:
 
     @staticmethod
     def get_config():
-        if ConfigManager.config is None:
-            ConfigManager.renew_config()
         if not os.path.exists(ConfigManager.config_path):
             ConfigManager.create_config()
+        if ConfigManager.config is None:
+            ConfigManager.renew_config()
         return ConfigManager.config
