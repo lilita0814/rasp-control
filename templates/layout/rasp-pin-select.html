@@ -1,7 +1,7 @@
 
-<select class="form-select">
+<select class="form-select" id={{ id }}>
     {% for i in range(40) %}
-        <option value="{{ i + 1 }} {% if i + 1 == select %}selected{% endif %}">
+        <option value="{{ i + 1 }}" {% if i + 1 == select %}selected{% endif %}>
             {{ i + 1 }}</option>
     {% endfor %}
 </select>

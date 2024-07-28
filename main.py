@@ -3,7 +3,11 @@ import webbrowser
 from threading import Timer
 from flask import Flask
 from controller.MainPageController import app as main_page
+from controller.SettingsPageController import app as settings_page
+from controller.SwitchControllerPageController import app as switch_controller_page
+from controller.DataController import app as data_page
 from module.ConfigManager import ConfigManager
+from module.SwitchControllerManager import SwitchControllerManager
 
 
 def open_browser():
@@ -11,11 +15,17 @@ def open_browser():
 
 
 if __name__ == '__main__':
-    ConfigManager.get_config()
+    ConfigManager.init()
+    SwitchControllerManager.init()
+
     app = Flask(__name__,
                 template_folder='templates',
                 static_folder='static')
-    app.register_blueprint(main_page)
+    prefix = '/rasp-control'
+    app.register_blueprint(main_page, url_prefix=prefix)
+    app.register_blueprint(settings_page, url_prefix=prefix + '/settings')
+    app.register_blueprint(switch_controller_page, url_prefix=prefix + '/switch-controller')
+    app.register_blueprint(data_page, url_prefix=prefix + '/data')
 
     local_ip = socket.gethostbyname(socket.gethostname())
     Timer(1, open_browser).start()

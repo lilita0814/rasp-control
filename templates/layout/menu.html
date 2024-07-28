@@ -6,6 +6,10 @@
             <i class="fa-solid fa-house"></i>
             <b><u>Home</u></b>
         </button>
+        <button onclick="go_page('/rasp-control/switch-controller')" class="list-group-item list-group-item-action text-center text-muted">
+            <i class="fa-solid fa-toggle-on"></i>
+            <b><u>Switch Controller</u></b>
+        </button>
         <button onclick="go_page('/rasp-control/settings')" class="list-group-item list-group-item-action text-center text-muted menu-item">
             <i class="fa-solid fa-gear"></i>
             <b><u>Settings</u></b>
@@ -15,7 +19,7 @@
 
 <style>
     .menu-item {
-        width: 300px;
+        width: 600px;
     }
 </style>
 
@@ -23,8 +27,8 @@
     function go_page(page) {
         let now_location = location.href
         if (now_location.endsWith('/'))
-            now_location.substring(0, now_location.length)
-        if (now_location !== page)
+            now_location = now_location.substring(0, now_location.length - 1)
+        if (!now_location.endsWith(page))
             location.href = page
     }
 </script>

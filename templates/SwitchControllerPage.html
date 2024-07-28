@@ -1,0 +1,58 @@
+{% extends 'layout/layout.html' %}
+{% block title %}Switch Controller{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="/static/css/switchControllerPage.css">
+
+    <!-- menu -->
+    <div class="col-12 row mb-2">
+        <div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">
+                <i class="fa-solid fa-plus me-2"></i>Add
+            </button>
+        </div>
+    </div>
+
+    <!-- component -->
+    <div class="col-12 row" id="components">
+        <div class="justify-content-center d-flex">Loading...</div>
+    </div>
+
+    <!-- add model -->
+    <div class="modal" tabindex="-1" id="add-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Switch</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- name -->
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">Name</label>
+                        <input class="form-control" id="create-name" required>
+                    </div>
+                    <!-- icon -->
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">Icon</label>
+                        <input class="form-control" id="create-icon" placeholder="fa-web-awesome">
+                        <a href="https://fontawesome.com/icons" target="_blank" class="btn btn-secondary"><u>Icon
+                            Search</u></a>
+                    </div>
+                    <!-- gpio pin -->
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">GPIO Pin</label>
+                        {% with id = 'create-gpio-pin' %}
+                            {% include 'layout/rasp-pin-select.html' %}
+                        {% endwith %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="create-switch-btn" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/switchControllerPage.js"></script>
+{% endblock %}

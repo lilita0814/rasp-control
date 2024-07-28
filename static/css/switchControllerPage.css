@@ -1,0 +1,35 @@
+
+.modal-header {
+    background-color: #6ea8fe;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+.switch {
+    scale: 200%;
+}
+
+.setting-btn {
+    width: 30px;
+    height: 30px;
+}
+
+.form-check-input:checked {
+    background-color: #58f658;
+    border-color: #58f658;
+}
+
+.form-check-input {
+    background-color: #ff5555;
+    border: #ff5555;
+}
+
+.form-check-input:focus, .form-check-input:active, .form-check-input:not(:focus) {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+
