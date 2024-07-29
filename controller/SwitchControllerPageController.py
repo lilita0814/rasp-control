@@ -18,6 +18,9 @@ def create_switch():
     new_switch.gpio_pin = int(request.json['gpio_pin'])
     new_switch.icon = request.json['icon']
     new_switch.slot = 0
+    #  slot +1
+    for e in SwitchControllerManager.data:
+        e.slot += 1
     SwitchControllerManager.data.append(new_switch)
     SwitchControllerManager.save_data()
-    return 'success'
+    return SwitchControllerManager.get_data()

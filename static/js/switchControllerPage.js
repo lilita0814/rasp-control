@@ -24,7 +24,9 @@ $(function () {
             }),
             success: function (data) {
                 alert('create success')
+                components_data = data
                 $('#add-modal').hide()
+                renew_component()
             },
             error: function (x, sts, ex) {
                 alert(ex)
@@ -42,9 +44,8 @@ $(function () {
             if (data.length > 0) {
                 components_data = data
                 //  有数据
-                $.each(data, function (index, item) {
-                    add_component(item.name, item.gpio_pin, item.icon)
-                })
+                renew_component()
+                console.log(components_data)
             } else {
                 //  无数据
                 components_html.append(
@@ -54,7 +55,22 @@ $(function () {
         }
     })
 
-    function add_component(name, pin, icon) {
+    function renew_component() {
+        let components_html = $('#components')
+        components_html.empty()
+        $.each(components_data, function (index, item) {
+            add_component(item.name, item.gpio_pin, item.icon, index)
+        })
+        //  edit component
+        $('.edit-btn').click(function () {
+            let data = components_data.find(e => e.slot === $(this).data('edit-slot'))
+            $('#edit-icon').val(data.icon)
+            $('#edit-name').val(data.name)
+            $('#edit-gpio-pin').val(data.gpio_pin)
+        })
+    }
+
+    function add_component(name, pin, icon, slot) {
         $('#components').append(
             '<div class="col-6">' +
             '<ul class="list-group">' +
@@ -72,7 +88,7 @@ $(function () {
             '<div class="form-switch switch me-5">' +
             '<input class="form-check-input" type="checkbox" role="switch">' +
             '</div>' +
-            '<button class="btn btn-danger position-absolute end-0 bottom-0 d-flex justify-content-center setting-btn">' +
+            `<button class="btn btn-danger position-absolute end-0 bottom-0 d-flex justify-content-center edit-btn" data-edit-slot="${slot}" data-bs-toggle="modal" data-bs-target="#edit-modal">` +
             '<i class="fa-solid fa-gear"></i>' +
             '</button>' +
             '</div>' +

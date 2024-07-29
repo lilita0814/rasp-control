@@ -1,6 +1,8 @@
 import json
 import os
 
+from model.Switch import Switch
+
 
 class SwitchControllerManager:
     data: list = []
@@ -16,12 +18,15 @@ class SwitchControllerManager:
     def renew_data():
         with open(SwitchControllerManager.file_path, 'r') as file:
             data = json.load(file)
-        if data is not None:
-            SwitchControllerManager.data = data
+        for item in data:
+            new_item = Switch()
+            new_item.__dict__.update(item)
+            SwitchControllerManager.data.append(new_item)
 
     @staticmethod
     def get_data():
-        return SwitchControllerManager.data
+        result = [e.__dict__ for e in SwitchControllerManager.data]
+        return result
 
     @staticmethod
     def init():

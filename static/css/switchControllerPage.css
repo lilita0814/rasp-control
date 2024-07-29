@@ -1,6 +1,14 @@
 
-.modal-header {
+.create-modal-header {
     background-color: #6ea8fe;
+}
+
+.edit-modal-header {
+    background-color: #f58f41;
+}
+
+.modal-content {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .icon {
@@ -11,7 +19,7 @@
     scale: 200%;
 }
 
-.setting-btn {
+.edit-btn {
     width: 30px;
     height: 30px;
 }
