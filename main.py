@@ -1,3 +1,4 @@
+import os
 import socket
 import webbrowser
 from threading import Timer
@@ -15,6 +16,7 @@ def open_browser():
 
 
 if __name__ == '__main__':
+    os.makedirs('data', exist_ok=True)
     ConfigManager.init()
     SwitchControllerManager.init()
 
