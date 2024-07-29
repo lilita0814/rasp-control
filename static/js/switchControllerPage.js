@@ -88,7 +88,7 @@ $(function () {
             '<div class="form-switch switch me-5">' +
             '<input class="form-check-input" type="checkbox" role="switch">' +
             '</div>' +
-            `<button class="btn btn-danger position-absolute end-0 bottom-0 d-flex justify-content-center edit-btn" data-edit-slot="${slot}" data-bs-toggle="modal" data-bs-target="#edit-modal">` +
+            `<button class="btn btn-secondary position-absolute end-0 bottom-0 d-flex justify-content-center edit-btn" data-edit-slot="${slot}" data-bs-toggle="modal" data-bs-target="#edit-modal">` +
             '<i class="fa-solid fa-gear"></i>' +
             '</button>' +
             '</div>' +
