@@ -38,3 +38,24 @@ class SwitchControllerManager:
     def save_data():
         with open(SwitchControllerManager.file_path, 'w') as file:
             json.dump([e.__dict__ for e in SwitchControllerManager.data], file, indent=4)
+
+    @staticmethod
+    def add_data(new_data):
+        SwitchControllerManager.sort_data_slot()
+        for i in SwitchControllerManager.data:
+            i.slot += 1
+        SwitchControllerManager.data.append(new_data)
+        SwitchControllerManager.save_data()
+
+
+    @staticmethod
+    def delete_data(slot):
+        SwitchControllerManager.data = [data for data in SwitchControllerManager.data if data.slot != slot]
+        SwitchControllerManager.sort_data_slot()
+        SwitchControllerManager.save_data()
+
+    @staticmethod
+    def sort_data_slot():
+        SwitchControllerManager.data.sort(key=lambda e: e.slot)
+        for i, v in enumerate(SwitchControllerManager.data):
+            v.slot = i

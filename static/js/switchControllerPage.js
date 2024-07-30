@@ -34,6 +34,27 @@ $(function () {
         })
     })
 
+    //  delete
+    $('#delete-component-btn').click(function () {
+        let slot = $(this).data('slot')
+        $.ajax({
+            url: '/rasp-control/switch-controller/delete-switch',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                slot: slot
+            }),
+            success: function(data) {
+                components_data = data
+                renew_component()
+                alert('delete success')
+            },
+            error: function(x, sts, ex) {
+                alert(ex)
+            }
+        })
+    })
+
     //  init
     $.ajax({
         url: '/rasp-control/data/get-switch-controller',
@@ -67,6 +88,7 @@ $(function () {
             $('#edit-icon').val(data.icon)
             $('#edit-name').val(data.name)
             $('#edit-gpio-pin').val(data.gpio_pin)
+            $('#delete-component-btn').data('slot', data.slot)
         })
     }
 

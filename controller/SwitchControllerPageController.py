@@ -18,9 +18,12 @@ def create_switch():
     new_switch.gpio_pin = int(request.json['gpio_pin'])
     new_switch.icon = request.json['icon']
     new_switch.slot = 0
-    #  slot +1
-    for e in SwitchControllerManager.data:
-        e.slot += 1
-    SwitchControllerManager.data.append(new_switch)
-    SwitchControllerManager.save_data()
+    SwitchControllerManager.add_data(new_switch)
+    return SwitchControllerManager.get_data()
+
+
+@app.route('/delete-switch', methods=['POST'])
+def delete_switch():
+    slot = request.json['slot']
+    SwitchControllerManager.delete_data(slot)
     return SwitchControllerManager.get_data()
