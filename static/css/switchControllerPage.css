@@ -7,8 +7,16 @@
     background-color: #f58f41;
 }
 
+.edit-slot-modal-header {
+    background-color: #5cee57;
+}
+
 .modal-content {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+#slot-drag-modal-body {
+    background-color: #eff5f0;
 }
 
 .icon {

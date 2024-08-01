@@ -27,3 +27,19 @@ def delete_switch():
     slot = request.json['slot']
     SwitchControllerManager.delete_data(slot)
     return SwitchControllerManager.get_data()
+
+
+@app.route('/update-switch-sort', methods=['POST'])
+def sort_switch():
+    new_data = request.json['data']
+    new_list = []
+    for i, e in enumerate(new_data):
+        switch = Switch()
+        switch.name = e['name']
+        switch.gpio_pin = int(e['gpio_pin'])
+        switch.icon = e['icon']
+        switch.slot = i
+        new_list.append(switch)
+    SwitchControllerManager.data = new_list
+    SwitchControllerManager.save_data()
+    return SwitchControllerManager.get_data()
