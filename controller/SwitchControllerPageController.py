@@ -43,3 +43,14 @@ def sort_switch():
     SwitchControllerManager.data = new_list
     SwitchControllerManager.save_data()
     return SwitchControllerManager.get_data()
+
+
+@app.route('/edit-switch', methods=['POST'])
+def edit_switch():
+    slot = request.json['slot']
+    target = next(e for e in SwitchControllerManager.data if e.slot == slot)
+    target.name = request.json['name']
+    target.gpio_pin = int(request.json['gpio_pin'])
+    target.icon = request.json['icon']
+    SwitchControllerManager.save_data()
+    return SwitchControllerManager.get_data()

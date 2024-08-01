@@ -42,6 +42,11 @@
     border: #ff5555;
 }
 
+.form-check-input:disabled {
+    background-color: #646060;
+    border: #646060;
+}
+
 .form-check-input:focus, .form-check-input:active, .form-check-input:not(:focus) {
     outline: none !important;
     box-shadow: none !important;

@@ -67,7 +67,6 @@ $(function () {
                 components_data = data
                 //  有数据
                 renew_component()
-                console.log(components_data)
             } else {
                 //  无数据
                 components_html.append(
@@ -83,6 +82,7 @@ $(function () {
         $.each(components_data, function (index, item) {
             add_component(item.name, item.gpio_pin, item.icon, index)
         })
+
         //  edit component
         $('.edit-btn').click(function () {
             let data = components_data.find(e => e.slot === $(this).data('edit-slot'))
@@ -90,6 +90,7 @@ $(function () {
             $('#edit-name').val(data.name)
             $('#edit-gpio-pin').val(data.gpio_pin)
             $('#delete-component-btn').data('slot', data.slot)
+            $('#edit-switch-save-btn').data('slot', data.slot)
         })
     }
 
@@ -109,7 +110,7 @@ $(function () {
             </div>
             <div class="col-2 d-flex justify-content-end align-items-center">
             <div class="form-switch switch me-5">
-            <input class="form-check-input" type="checkbox" role="switch">
+            <input disabled class="form-check-input" type="checkbox" role="switch">
             </div>
             <button class="btn btn-secondary position-absolute end-0 bottom-0 d-flex justify-content-center edit-btn" data-edit-slot="${slot}" data-bs-toggle="modal" data-bs-target="#edit-modal">
             <i class="fa-solid fa-gear"></i>
@@ -168,7 +169,7 @@ $(function () {
                 data: new_slot_data
             }),
             success: function (data) {
-                console.log('data: ',data)
+                console.log('data: ', data)
                 alert('save success')
                 components_data = data
                 renew_component()
@@ -179,6 +180,38 @@ $(function () {
             }
         })
 
+    })
+
+    //  edit switch save btn
+    $('#edit-switch-save-btn').click(function() {
+        let name = $('#edit-name').val()
+        let gpio_pin = $('#edit-gpio-pin').val()
+        let icon = $('#edit-icon').val()
+        let slot = $(this).data('slot')
+        if (name === '') {
+            alert('name cannot be empty')
+            return
+        }
+        $.ajax({
+            url: '/rasp-control/switch-controller/edit-switch',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                name: name,
+                gpio_pin: gpio_pin,
+                icon: icon,
+                slot: slot
+            }),
+            success: function (data) {
+                alert('edit successful')
+                components_data = data
+                renew_component()
+                $('#edit-modal').modal('hide')
+            },
+            error: function (x, sts, ex) {
+                alert(ex)
+            }
+        })
     })
 
 })
