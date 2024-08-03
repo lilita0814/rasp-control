@@ -52,6 +52,13 @@ $(function () {
                     '<div class="d-flex justify-content-center">data was empty</div>'
                 )
             }
+        },
+        error: function (x, sts, ex) {
+            let components_html = $('#components')
+            components_html.empty()
+            components_html.append(
+                    `<div class="d-flex justify-content-center">error: ${ex}</div>`
+                )
         }
     })
 
@@ -59,7 +66,7 @@ $(function () {
         let components_html = $('#components')
         components_html.empty()
         $.each(components_data, function (index, item) {
-            add_component(item.name, item.gpio_pin, item.icon, index)
+            add_component(item.name, item.gpio_pin, item.icon, item.slot)
         })
         //  edit component
         $('.edit-btn').click(function () {

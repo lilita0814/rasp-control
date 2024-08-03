@@ -1,6 +1,8 @@
 import os
 import socket
 import webbrowser
+import keyring
+from keyring.backends.null import Keyring
 from threading import Timer
 from flask import Flask
 from controller.MainPageController import app as main_page
@@ -16,6 +18,7 @@ def open_browser():
 
 
 if __name__ == '__main__':
+    keyring.set_keyring(Keyring())
     os.makedirs('data', exist_ok=True)
     ConfigManager.init()
     SwitchControllerManager.init()
