@@ -44,7 +44,7 @@ class SwitchControllerManager:
         SwitchControllerManager.sort_data_slot()
         for i in SwitchControllerManager.data:
             i.slot += 1
-        SwitchControllerManager.data.append(new_data)
+        SwitchControllerManager.data.insert(0, new_data)
         SwitchControllerManager.save_data()
 
 

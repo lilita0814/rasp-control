@@ -4,11 +4,11 @@ $(function () {
 
     // create
     $('#create-switch-btn').click(function () {
-        let name = $('#create-name').val()
-        let gpio_pin = $('#create-gpio-pin').val()
-        let icon = $('#create-icon').val()
+        let name = $('#create-name')
+        let gpio_pin = $('#create-gpio-pin')
+        let icon = $('#create-icon')
 
-        if (name === '') {
+        if (name.val() === '') {
             alert('Name unable to be empty')
             return
         }
@@ -18,12 +18,15 @@ $(function () {
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                gpio_pin: gpio_pin,
-                name: name,
-                icon: icon
+                gpio_pin: gpio_pin.val(),
+                name: name.val(),
+                icon: icon.val()
             }),
             success: function (data) {
                 alert('create success')
+                name.val('')
+                gpio_pin.val('1')
+                icon.val('')
                 components_data = data
                 $('#add-modal').modal('hide')
                 renew_component()
